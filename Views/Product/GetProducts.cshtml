@@ -1,0 +1,168 @@
+@model IEnumerable<Mobile_shop_Frontend.Models.ProductModel>
+
+@{
+    ViewBag.Title = "Products Table";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+        <div class="dropdown">
+            <a asp-controller="Product" asp-action="AddEdit" class="btn btn-primary btn-pill">Add Product</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="get" action="@Url.Action("GetProducts", "Product")">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="categoryDropdown">Category</label>
+                    <select id="categoryDropdown" name="categoryId" asp-items="ViewBag.Categories" class="form-control">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="brandDropdown">Brand</label>
+                    <select id="brandDropdown" name="brandId" asp-items="ViewBag.Brands" class="form-control">
+                        <option value="">All Brands</option>
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end justify-content-end">
+                    <button type="submit" class="btn btn-primary btn-pill">Filter</button>
+                </div>
+            </div>
+        </form>
+        <div class="table-responsive">
+
+            <table id="productsTable" class="table table-hover table-product mt-2">
+                <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Brand</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                    <th>Modified Date</th>
+                </tr>
+                </thead>
+                <tbody id="productList">
+                @foreach (var product in Model)
+                {
+                    <tr data-product-id="@product.ProductId" class="product-row">
+                        <td>@product.ProductName</td>
+                        <td>@product.BrandName</td>
+                        <td>@product.CategoryName</td>
+                        <td>@product.ProductPrice</td>
+                        <td>@product.StockQuantity</td>
+                        <td>@product.Status</td>
+                        <td>@product.CreatedDate.ToString("dd/MM/yyyy")</td>
+                        <td>@(product.ModifiedDate?.ToString("dd/MM/yyyy") ?? "-")</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            </div>
+    </div>
+</div>
+
+<div class="modal fade" id="productDetailsModal" tabindex="-1" role="dialog" aria-labelledby="productDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productDetailsModalLabel">Product Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img id="productImage" src="" alt="Product Image" class="img-fluid"/>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <strong>Product Name:</strong> <span id="productName"></span>
+                        </p>
+                        <p>
+                            <strong>Brand:</strong> <span id="productBrand"></span>
+                        </p>
+                        <p>
+                            <strong>Category:</strong> <span id="productCategory"></span>
+                        </p>
+                        <p>
+                            <strong>Price:</strong> <span id="productPrice"></span>
+                        </p>
+                        <p>
+                            <strong>Stock Quantity:</strong> <span id="productStock"></span>
+                        </p>
+                        <p>
+                            <strong>Status:</strong> <span id="productStatus"></span>
+                        </p>
+                        <p>
+                            <strong>Description:</strong> <span id="productDescription"></span>
+                        </p>
+                        <p>
+                            <strong>Created Date:</strong> <span id="productCreatedDate"></span>
+                        </p>
+                        <p>
+                            <strong>Modified Date:</strong> <span id="productModifiedDate"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="editProductBtn" class="btn btn-primary btn-pill">Edit</a>
+                <a id="deleteProductBtn" class="btn btn-secondary btn-pill">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function () {
+
+        $('.product-row').on('click', function () {
+            var productId = $(this).data('product-id');
+
+            $.ajax({
+                url: '/Product/GetProductDetails',
+                type: 'GET',
+                data: { id: productId },
+                success: function (response) {
+                    if (response.success) {
+                        // Populate modal with product details
+                        $('#productImage').attr('src', response.productImage);
+                        $('#productName').text(response.productName);
+                        $('#productBrand').text(response.brandName);
+                        $('#productCategory').text(response.categoryName);
+                        $('#productPrice').text(response.productPrice);
+                        $('#productStock').text(response.stockQuantity);
+                        $('#productStatus').text(response.status);
+                        $('#productDescription').text(response.productDescription);
+                        $('#productCreatedDate').text(response.createdDate);
+                        $('#productModifiedDate').text(response.modifiedDate || '-');
+                        $('#editProductBtn').attr('href', '/Product/AddEdit?id=' + productId);
+                        $('#deleteProductBtn').attr('href', '/Product/Delete?id=' + productId);
+                        $('#productDetailsModal').modal('show');
+                    } else {
+                        alert('Failed to fetch product details.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('An error occurred while fetching product details.');
+                }
+            });
+        });
+        
+
+        $('.close, .btn-secondary').on('click', function () {
+            $('#productDetailsModal').modal('hide');
+        });
+    });
+</script>
+}

@@ -1,0 +1,65 @@
+@model Mobile_shop_Frontend.Models.UserModel
+
+@{
+    ViewBag.Title = "Sellers Form";
+}
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="card-body">
+        <form asp-controller="User" asp-action="Save" method="post">
+            <!-- Hidden Field for UserId -->
+            <input type="hidden" id="userId" asp-for="UserId">
+
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control rounded-0" id="userName" asp-for="UserName" placeholder="Enter Name">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="userEmail">Email address</label>
+                <input type="email" class="form-control rounded-0" id="userEmail" asp-for="UserEmail" placeholder="Enter Email">
+                <span asp-validation-for="UserEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="text" class="form-control rounded-0" id="password" asp-for="Password" placeholder="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <div>
+                    <div class="form-check mr-3 mb-3 d-inline-block">
+                        <input class="form-check-input" type="radio" asp-for="Role" id="roleAdmin" value="Admin">
+                        <label class="form-check-label" for="roleAdmin">Admin</label>
+                    </div>
+                    <div class="form-check mr-3 mb-3 d-inline-block">
+                        <input class="form-check-input" type="radio" asp-for="Role" id="roleSales" value="Sales" checked="checked">
+                        <label class="form-check-label" for="roleSales">Sales</label>
+                    </div>
+                </div>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <div>
+                    <div class="form-check mr-3 mb-3 d-inline-block">
+                        <input class="form-check-input" type="radio" asp-for="Status" id="statusActive" value="Active">
+                        <label class="form-check-label" for="statusActive">Active</label>
+                    </div>
+                    <div class="form-check mr-3 mb-3 d-inline-block">
+                        <input class="form-check-input" type="radio" asp-for="Status" id="statusInactive" value="Inactive" checked="checked">
+                        <label class="form-check-label" for="statusInactive">Inactive</label>
+                    </div>
+                </div>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary btn-pill">Submit</button>
+                <button asp-controller="User" asp-action="GetSellers" class="btn btn-light btn-pill">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

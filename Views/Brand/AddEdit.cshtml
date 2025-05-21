@@ -1,0 +1,27 @@
+@model Mobile_shop_Frontend.Models.BrandModel
+
+@{
+    ViewBag.Title = "Brand Form";
+}
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="card-body">
+        <form asp-controller="Brand" asp-action="Save" method="post">
+            <input type="hidden" id="brandId" asp-for="BrandId">
+
+            <div class="form-group">
+                <label for="brandName">Brand Name</label>
+                <input type="text" class="form-control rounded-0" id="brandName" asp-for="BrandName" placeholder="Enter Brand Name">
+                <span asp-validation-for="BrandName" class="text-danger"></span>
+            </div>
+
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary btn-pill">Submit</button>
+                <button asp-controller="Brand" asp-action="GetBrands" class="btn btn-light btn-pill">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

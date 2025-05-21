@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{@mdi/font, bootstrap, bootstrap-daterangepicker, chart.js, font-awesome, hotkeys-js, html5shiv, jquery, jquery-3.6.0, jquery-validate, jquery-validation-unobtrusive, moment.js, quill, quill.snow, respond.js, sweetalert2}" />
+  </component>
+</project>

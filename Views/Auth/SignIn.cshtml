@@ -1,0 +1,100 @@
+@model Mobile_shop_Frontend.Models.UserAuthModel;
+@{
+    ViewBag.Title = "SignIn";
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
+    <link href="~/plugins/material/css/materialdesignicons.min.css" rel="stylesheet"/>
+    <link href="~/plugins/simplebar/simplebar.css" rel="stylesheet"/>
+
+    <!-- PLUGINS CSS STYLE -->
+    <link href="~/plugins/nprogress/nprogress.css" rel="stylesheet"/>
+
+    <!-- MONO CSS -->
+    <link id="main-css-href" rel="stylesheet" href="~/css/style.css"/>
+
+
+    <!-- FAVICON -->
+    <link href="~/images/favicon.png" rel="shortcut icon"/>
+
+    <!--
+    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+    -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+    <script src="~/plugins/nprogress/nprogress.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+</head>
+
+<body class="bg-light-gray" id="body">
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh">
+    <div class="d-flex flex-column justify-content-between">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-10">
+                <div class="card card-default mb-0">
+                    <div class="card-header pb-0">
+                        <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">
+                            <a class="w-auto pl-0" href="/index.html">
+                                <img src="~/images/GadgetPontLogo2.png" alt="Mono">
+                                <h2 class="text-primary" style="font-weight: bold;font-size: 30px; padding-left:10px;">Gadget Point</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body px-5 pb-5 pt-0">
+                        <form asp-controller="Auth" asp-action="HandleSignIn" method="post">
+                            <div class="row">
+                                <div class="col-md-12 mb-4 ">
+                                    <h3 class="w-100 text-center" style="font-size: 20px">Sign In</h3>
+                                </div>
+                                <div class="form-group col-md-12 mb-4">
+                                    <input asp-for="UserEmail" type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp"
+                                           placeholder="email">
+                                    <span asp-validation-for="UserEmail" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12 mb-4">
+                                    <input asp-for="Password" type="password" class="form-control input-lg" id="password" placeholder="Password">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-12 w-100 text-center">
+                                    <button type="submit" class="btn btn-primary btn-pill mb-4">Sign In</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).ready(function () {
+        var message = '@ViewBag.Message';
+        if (message.trim() !== '') {
+            Swal.fire({
+                icon: 'error', // Use 'success' if needed
+                title: 'Oops!',
+                text: message,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+</script>
+</body>
+</html>

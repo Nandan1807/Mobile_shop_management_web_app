@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "NhRtTnSIl0aqxgt8ZQFCns/qMzXB486wST9MG3o9uC3l0wIoTu8I97Xx3BYEopPng27Q5CLQVFpgY9NdST6Knw==",
+  "success": true,
+  "projectFilePath": "/Users/nandan/Desktop/Sem-6/Dotnet Advance/MobileShopProject/Mobile_shop_Frontend/Mobile_shop_Frontend.csproj",
+  "expectedPackageFiles": [
+    "/Users/nandan/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
+    "/Users/nandan/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/Users/nandan/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "/Users/nandan/.nuget/packages/microsoft.aspnetcore.jsonpatch/8.0.12/microsoft.aspnetcore.jsonpatch.8.0.12.nupkg.sha512",
+    "/Users/nandan/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/8.0.12/microsoft.aspnetcore.mvc.newtonsoftjson.8.0.12.nupkg.sha512",
+    "/Users/nandan/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/Users/nandan/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/2.1.0/microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
+    "/Users/nandan/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/nandan/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

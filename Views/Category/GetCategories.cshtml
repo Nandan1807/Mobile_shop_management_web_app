@@ -1,0 +1,49 @@
+@model IEnumerable<Mobile_shop_Frontend.Models.CategoryModel>
+
+@{
+ViewBag.Title = "Categories Table";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<div class="card card-default mt-5">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">@ViewBag.Title</h2>
+        <a asp-controller="Category" asp-action="AddEdit" class="btn btn-primary btn-pill">Add Category</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                <thead class="thead-light">
+                <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Created Date</th>
+                    <th>Modified Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="productList">
+                @foreach (var category in Model)
+                {
+                <tr>
+                    <td>@category.CategoryName</td>
+                    <td>@category.Description</td>
+                    <td>@category.CreatedDate.ToString("dd/MM/yyyy")</td>
+                    <td>@(category.ModifiedDate?.ToString("dd/MM/yyyy") ?? "-")</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle icon-burger-mini" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" asp-controller="Category" asp-action="AddEdit" asp-route-id="@category.CategoryId">Edit</a>
+                                <a class="dropdown-item text-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@category.CategoryId">Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

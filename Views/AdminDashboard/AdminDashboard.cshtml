@@ -1,0 +1,547 @@
+@model Mobile_shop_Frontend.Models.AdminDashboardModel;
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="content-wrapper">
+<div class="content">
+<!-- Top Statistics -->
+<div class="row">
+    <!-- Total Customers -->
+    <div class="col-xl-3 col-sm-6">
+        <div class="card card-default card-mini">
+            <div class="card-header">
+                <h2>@Model.Statistics.TotalCustomers</h2>
+                <div class="sub-title">
+                    <span>Total Customers</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Users -->
+    <div class="col-xl-3 col-sm-6">
+        <div class="card card-default card-mini">
+            <div class="card-header">
+                <h2>@Model.Statistics.TotalUsers</h2>
+                <div class="sub-title">
+                    <span>Total Users</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Products -->
+    <div class="col-xl-3 col-sm-6">
+        <div class="card card-default card-mini">
+            <div class="card-header">
+                <h2>@Model.Statistics.TotalProducts</h2>
+                <div class="sub-title">
+                    <span>Total Products</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Sales -->
+    <div class="col-xl-3 col-sm-6">
+        <div class="card card-default card-mini">
+            <div class="card-header">
+                <h2>@Model.Statistics.TotalSales.ToString("C", new System.Globalization.CultureInfo("hi-IN"))</h2>
+                <div class="sub-title">
+                    <span>Total Sales</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form class="w-100" method="get" asp-action="AdminDashboard">
+    <!-- Low Stock Products -->
+    <div class="card card-default">
+        <div class="card-header">
+            <h2>Low-Stock Products</h2>
+        </div>
+        <div class="card-header w-100">
+            <div class="row w-100">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Threshold">Stock Threshold</label>
+                        <input type="number" asp-for="Threshold" class="form-control" min="1"/>
+                    </div>
+                </div>
+                <div class="col w-75 d-flex justify-content-end">
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-pill">Show Stock</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Stock Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if (Model.LowStockProducts.Any())
+                    {
+                        @foreach (var product in Model.LowStockProducts)
+                        {
+                            <tr>
+                                <td>@product.ProductName</td>
+                                <td>@product.StockQuantity</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2">No low-stock products found</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Customer Purchase History Filter -->
+
+    <div class="card card-default">
+        <div class="card-header">
+            <h2>Customer Purchase History</h2>
+        </div>
+        <div class="card-header w-100">
+            <div class="row w-100">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="CustomerId">Customer</label>
+                        <select asp-for="CustomerId" asp-items="@ViewBag.Customers" class="form-control">
+                            <option value="">Select Customer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col w-75 d-flex justify-content-end">
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-pill">Show History</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Invoice ID</th>
+                        <th>Date</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if (Model.PurchaseHistory.Any())
+                    {
+                        @foreach (var history in Model.PurchaseHistory)
+                        {
+                            <tr>
+                                <td>@history.InvoiceId</td>
+                                <td>@history.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@history.ProductName</td>
+                                <td>@history.Quantity</td>
+                                <td>@history.TotalPrice</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">No purchase history found</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sales Report Filter -->
+
+    <div class="card card-default">
+        <div class="card-header">
+            <h2>Sales Report</h2>
+        </div>
+        <div class="card-header w-100">
+
+            <div class="row w-100">
+                <div class="col d-flex">
+                    <div class="form-group m-1">
+                        <label asp-for="StartDate">Start Date</label>
+                        <input type="date" asp-for="StartDate" class="form-control"/>
+                    </div>
+                    <div class="form-group m-1">
+                        <label asp-for="EndDate">End Date</label>
+                        <input type="date" asp-for="EndDate" class="form-control"/>
+                    </div>
+                </div>
+                <div class="col w-75 d-flex justify-content-end">
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-pill">Show Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Invoice ID</th>
+                        <th>Date</th>
+                        <th>Customer ID</th>
+                        <th>Total Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if (Model.SalesReport.Any())
+                    {
+                        @foreach (var report in Model.SalesReport)
+                        {
+                            <tr>
+                                <td>@report.InvoiceId</td>
+                                <td>@report.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@report.CustomerName</td>
+                                <td>@report.TotalAmount</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">No sales report found</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="row g-4">
+    <!-- Sales Trends -->
+    <div class="col-xxl-6 col-lg-12">
+        <div class="card shadow h-100">
+            <div class="card-body">
+                <h5 class="card-title text-primary">
+                    <i class="fas fa-chart-line me-2"></i>Monthly Sales Trends
+                </h5>
+                @if (!Model.SalesTrends.Any())
+                {
+                    <div class="alert alert-info mt-3">No sales trends data available</div>
+                }
+                else
+                {
+                    <canvas id="salesTrendsChart"></canvas>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Sales -->
+    <div class="col-xxl-6 col-lg-12">
+        <div class="card shadow h-100">
+            <div class="card-body">
+                <h5 class="card-title text-success">
+                    <i class="fas fa-calendar-day me-2"></i>Daily Sales
+                </h5>
+                @if (!Model.DailySales.Any())
+                {
+                    <div class="alert alert-info mt-3">No daily sales data available</div>
+                }
+                else
+                {
+                    <canvas id="dailySalesChart"></canvas>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Selling Products -->
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-body">
+                <h5 class="card-title text-danger">
+                    <i class="fas fa-star me-2"></i>Top Selling Products
+                </h5>
+                @if (!Model.TopSellingProducts.Any())
+                {
+                    <div class="alert alert-info mt-3">No top selling products data available</div>
+                }
+                else
+                {
+                    <canvas id="topSellingChart"></canvas>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Sales by Category -->
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-body">
+                <h5 class="card-title text-warning">
+                    <i class="fas fa-list-alt me-2"></i>Sales by Category
+                </h5>
+                @if (!Model.CategorySales.Any())
+                {
+                    <div class="alert alert-info mt-3">No category sales data available</div>
+                }
+                else
+                {
+                    <canvas id="categorySalesChart"></canvas>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Status -->
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-body">
+                <h5 class="card-title text-info">
+                    <i class="fas fa-wallet me-2"></i>Payment Status
+                </h5>
+                @if (!Model.PaymentStatusBreakdown.Any())
+                {
+                    <div class="alert alert-info mt-3">No payment status data available</div>
+                }
+                else
+                {
+                    <canvas id="paymentStatusChart"></canvas>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Customers -->
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-body">
+                <h5 class="card-title text-purple">
+                    <i class="fas fa-users me-2"></i>Top Customers
+                </h5>
+                @if (!Model.TopCustomers.Any())
+                {
+                    <div class="alert alert-info mt-3">No top customers data available</div>
+                }
+                else
+                {
+                    <canvas id="topCustomersChart"></canvas>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    }
+
+    .card-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .alert {
+        border-radius: 10px;
+    }
+
+    .text-purple {
+        color: #6f42c1;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: 300px !important;
+    }
+</style>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Sales Trends Chart (Monthly)
+        if (document.getElementById('salesTrendsChart')) {
+            new Chart(document.getElementById('salesTrendsChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.SalesTrends.Select(s => s.SalesMonth))),
+                    datasets: [{
+                        label: 'Total Sales',
+                        data: @Html.Raw(Json.Serialize(Model.SalesTrends.Select(s => s.TotalSales))),
+                        borderColor: '#4e73df',
+                        backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { mode: 'index', intersect: false }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Daily Sales Chart
+        if (document.getElementById('dailySalesChart')) {
+            new Chart(document.getElementById('dailySalesChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.DailySales.Select(s => s.SalesDate))),
+                    datasets: [{
+                        label: 'Daily Sales',
+                        data: @Html.Raw(Json.Serialize(Model.DailySales.Select(s => s.TotalSales))),
+                        backgroundColor: '#1cc88a',
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Top Selling Products Chart
+        if (document.getElementById('topSellingChart')) {
+            new Chart(document.getElementById('topSellingChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.TopSellingProducts.Select(p => p.ProductName))),
+                    datasets: [{
+                        label: 'Units Sold',
+                        data: @Html.Raw(Json.Serialize(Model.TopSellingProducts.Select(p => p.TotalSold))),
+                        backgroundColor: '#e74a3b',
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // Category Sales Chart
+        if (document.getElementById('categorySalesChart')) {
+            new Chart(document.getElementById('categorySalesChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.CategorySales.Select(c => c.CategoryName))),
+                    datasets: [{
+                        data: @Html.Raw(Json.Serialize(Model.CategorySales.Select(c => c.TotalRevenue))),
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        // Payment Status Chart
+        if (document.getElementById('paymentStatusChart')) {
+            new Chart(document.getElementById('paymentStatusChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.PaymentStatusBreakdown.Select(p => p.PaymentStatus))),
+                    datasets: [{
+                        data: @Html.Raw(Json.Serialize(Model.PaymentStatusBreakdown.Select(p => p.TotalInvoices))),
+                        backgroundColor: ['#1cc88a', '#f6c23e', '#e74a3b', '#4e73df']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        // Top Customers Chart
+        if (document.getElementById('topCustomersChart')) {
+            new Chart(document.getElementById('topCustomersChart').getContext('2d'), {
+                type: 'polarArea',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.TopCustomers.Select(c => c.CustomerName))),
+                    datasets: [{
+                        data: @Html.Raw(Json.Serialize(Model.TopCustomers.Select(c => c.PurchaseCount))),
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+    });
+</script>
+}

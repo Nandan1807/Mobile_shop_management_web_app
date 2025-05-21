@@ -1,0 +1,60 @@
+@model IEnumerable<Mobile_shop_Frontend.Models.InvoiceItemModel>
+
+@{
+    ViewBag.Title = "Invoice Items Table";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+        <div class="dropdown">
+            <a asp-controller="InvoiceItem" asp-action="AddEdit" asp-route-invoiceId="@ViewBag.InvoiceId" class="btn btn-primary btn-pill">Add Invoice Item</a>
+            <a asp-controller="Invoice" asp-action="GetInvoices" class="btn btn-light btn-pill me-2">Back</a>
+        </div>
+    </div>
+    <div class="card-body">
+        @* <div class="m-5 w-100 d-flex justify-content-between"> *@
+        @*     <a asp-controller="InvoiceItem" asp-action="AddEdit" asp-route-invoiceId="@ViewBag.InvoiceId" class="btn btn-primary btn-pill">Add Invoice Item</a> *@
+        @*     <a asp-controller="Invoice" asp-action="GetInvoices" class="btn btn-light btn-pill me-2">Back</a> *@
+        @* </div> *@
+        <div class="table-responsive">
+
+            <table id="invoiceItemsTable" class="table table-hover table-product" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Invoice Item ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="invoiceItemList">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.InvoiceItemId</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@item.TotalPrice</td>
+                        <td>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" asp-controller="InvoiceItem" asp-action="AddEdit" asp-route-id="@item.InvoiceItemId" asp-route-invoiceId="@item.InvoiceId">Edit</a>
+                                    <a class="dropdown-item" asp-controller="InvoiceItem" asp-action="Delete" asp-route-id="@item.InvoiceItemId" asp-route-invoiceId="@item.InvoiceId">Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            </div>
+    </div>
+</div>

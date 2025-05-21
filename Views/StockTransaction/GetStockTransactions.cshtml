@@ -1,0 +1,42 @@
+@model IEnumerable<Mobile_shop_Frontend.Models.StockTransactionModel>
+
+@{
+    ViewBag.Title = "Stock Transactions Table";
+}
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+        <div class="dropdown">
+            <a asp-controller="StockTransaction" asp-action="AddEdit" class="btn btn-primary btn-pill">Add Stock Transaction</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <table id="productsTable" class="table table-hover table-product">
+                <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>User Name</th>
+                    <th>Transaction Type</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody id="productList">
+                @foreach (var transaction in Model)
+                {
+                    <tr data-transaction-id="@transaction.TransactionId">
+                        <td>@transaction.ProductName</td>
+                        <td>@transaction.UserName</td>
+                        <td>@transaction.TransactionState</td>
+                        <td>@transaction.StockQuantity</td>
+                        <td>@transaction.Date.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            </div>
+    </div>
+</div>

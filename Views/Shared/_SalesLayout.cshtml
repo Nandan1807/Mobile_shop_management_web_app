@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Gadget Point</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.css">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- theme meta -->
+    <meta name="theme-name" content="mono"/>
+
+    <!-- GOOGLE FONTS -->
+    <link href="~/plugins/material/css/materialdesignicons.min.css" rel="stylesheet"/>
+    <link href="~/plugins/simplebar/simplebar.css" rel="stylesheet"/>
+
+    <!-- PLUGINS CSS STYLE -->
+    <link href="~/plugins/nprogress/nprogress.css" rel="stylesheet"/>
+
+
+    <link href="~/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css" rel="stylesheet"/>
+
+
+    <link href="~/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
+
+
+    <link href="~/plugins/daterangepicker/daterangepicker.css" rel="stylesheet"/>
+
+    <link href="~/plugins/toaster/toastr.min.css" rel="stylesheet"/>
+
+
+    <!-- MONO CSS -->
+    <link id="main-css-href" rel="stylesheet" href="~/css/style.css"/>
+
+
+    <!-- FAVICON -->
+    <link href="~/images/favicon.png" rel="shortcut icon"/>
+    <style>
+        #left-sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: #222;
+            transition: width 0.3s ease-in-out;
+            overflow: hidden;
+        }
+        #left-sidebar.collapsed {
+            width: 70px;
+        }
+        #content-wrapper {
+            transition: margin-left 0.3s ease-in-out;
+        }
+        #content-wrapper.expanded {
+            width: 120vw;
+            margin-left: -15vw;
+        }
+        #header {
+            transition: margin-left 0.3s ease-in-out;
+        }
+        #header.expanded{
+            margin-left: -15vw;
+        }
+        #left-sidebar.collapsed .nav-text {
+            display: none;
+        }
+        
+        #left-sidebar .sidenav-item i {
+            font-size: 20px;
+            padding-right: 10px;
+        }
+        #left-sidebar.collapsed .sidenav-item i {
+            padding-right: 0;
+        }
+        .sidenav-logo{
+            transition: margin-left 0.3s ease-in-out;
+        }
+        .sidenav-logo.expanded{
+            margin-left : -10px;
+        }
+    </style>
+
+
+</head>
+<body class="navbar-fixed sidebar-fixed">
+<script>
+    NProgress.configure({showSpinner: false});
+    NProgress.start();
+</script>
+
+<!-- ====================================
+——— WRAPPER
+===================================== -->
+<div class="wrapper d-flex">
+    <aside class="left-sidebar sidebar-dark" id="left-sidebar">
+        <div id="sidebar" class="sidebar sidebar-with-footer">
+            <div class="app-brand">
+                <a asp-controller="SalesDashboard" asp-action="SalesDashboard">
+                    <img src="~/images/GadgetPontLogo2.png" class="sidenav-logo" alt="Mono">
+                    <span class="brand-name nav-text">Gadget Point</span>
+                </a>
+            </div>
+            <div class="sidebar-left" data-simplebar style="height: 100%;">
+                <ul class="nav sidebar-inner" id="sidebar-menu">
+                    <li class="sidenav-item">
+                        <a class="sidenav-item-link" asp-controller="SalesDashboard" asp-action="SalesDashboard">
+                            <i class="mdi mdi-briefcase-account-outline"></i>
+                            <span class="nav-text">Business Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a class="sidenav-item-link" asp-controller="Customer" asp-action="GetCustomers">
+                            <i class="mdi mdi-account-group-outline"></i>
+                            <span class="nav-text">Customers</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a class="sidenav-item-link" asp-controller="SalesProduct" asp-action="GetProducts">
+                            <i class="mdi mdi-package-variant-closed"></i>
+                            <span class="nav-text">Products</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a class="sidenav-item-link" asp-controller="Invoice" asp-action="GetInvoices">
+                            <i class="mdi mdi-file-document-outline"></i>
+                            <span class="nav-text">Invoices</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+    <div class="page-wrapper" id="content-wrapper">
+        <header class="main-header" id="header">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <button id="sidebar-toggler" class="sidebar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <span class="page-title">Sales Dashboard</span>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user-menu">
+                            <button class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <span class="d-none d-lg-inline-block">
+                                    <i class="mdi mdi-account-outline"></i>
+                                    @ViewBag.UserDetails.UserName
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a class="dropdown-link-item" asp-controller="Profile" asp-action="ProfilePage">
+                                        <i class="mdi mdi-account-outline"></i>
+                                        <span class="nav-text">My Profile</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-footer">
+                                    <form class="dropdown-link-item" asp-controller="Auth" asp-action="HandleSignOut" method="post">
+                                        <button type="submit">
+                                            <i class="mdi mdi-logout"></i> Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <footer class="footer mt-auto bg-white text-dark py-4 border-top">
+            <div class="container text-center">
+                <h5 class="fw-bold mb-2">Gadget Point</h5>
+                <p class="text-muted mb-3">Mobile Shop Management System</p>
+
+                <div class="social-links mb-3">
+                    <a href="https://github.com/Nandan1807" class="text-dark me-3" target="_blank">
+                        <i class="fab fa-github fa-lg"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nandan-joshi-05332123a" class="text-dark me-3" target="_blank">
+                        <i class="fab fa-linkedin fa-lg"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_nandan_joshi18?igsh=dGlmNGN1eThlN2M0&utm_source=qr" class="text-dark" target="_blank">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
+                </div>
+
+                <p class="mb-1"><strong>Contact:</strong>
+                    <a href="mailto:nandan.joshi1807@gmail.com" class="text-dark">nandan.joshi1807@gmail.com</a> |
+                    <a href="tel:+919313185674" class="text-dark">+91 9313185674</a>
+                </p>
+
+                <p class="text-muted small">&copy; <span id="copy-year"></span> Designed by <strong>Nandan Joshi</strong>. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hotkeys-js@3.8.7/dist/hotkeys.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/plugins/simplebar/simplebar.min.js"></script>
+<script src="~/plugins/apexcharts/apexcharts.js"></script>
+
+
+<script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+
+
+<script src="~/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+<script src="~/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
+<script src="~/plugins/jvectormap/jquery-jvectormap-us-aea.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="~/plugins/daterangepicker/moment.min.js"></script>
+<script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        jQuery('input[name="dateRange"]').daterangepicker({
+            autoUpdateInput: false,
+            singleDatePicker: true,
+            locale: {
+                cancelLabel: 'Clear'
+            }
+        });
+        jQuery('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
+            jQuery(this).val(picker.startDate.format('MM/DD/YYYY'));
+        });
+        jQuery('input[name="dateRange"]').on('cancel.daterangepicker', function (ev, picker) {
+            jQuery(this).val('');
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentUrl = window.location.pathname.toLowerCase();
+        let navItems = document.querySelectorAll(".sidenav-item");
+
+        // Remove 'active' class from all items
+        navItems.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        navItems.forEach(item => {
+            let link = item.querySelector("a");
+            if (link) {
+                let href = link.getAttribute("href").toLowerCase();
+
+                // Normalize URLs by trimming trailing slashes
+                href = href.endsWith('/') ? href.slice(0, -1) : href;
+                currentUrl = currentUrl.endsWith('/') ? currentUrl.slice(0, -1) : currentUrl;
+
+                // Check if the current URL matches the link's href
+                if (currentUrl === href) {
+                    item.classList.add("active");
+                }
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sidebarToggler = document.getElementById("sidebar-toggler");
+        const sidebar = document.getElementById("left-sidebar");
+        const contentWrapper = document.getElementById("content-wrapper");
+        const header = document.getElementById("header");
+        const logo = document.querySelector(".sidenav-logo");
+
+
+
+        sidebarToggler.addEventListener("click", function () {
+            sidebar.classList.toggle("collapsed");
+            contentWrapper.classList.toggle("expanded");
+            header.classList.toggle("expanded");
+            logo.classList.toggle("expanded");
+        });
+
+        document.getElementById("copy-year").innerText = new Date().getFullYear();
+    });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<script src="~/plugins/nprogress/nprogress.js"></script>
+
+
+<script src="~/plugins/toaster/toastr.min.js"></script>
+
+<script src="~/js/mono.js"></script>
+<script src="~/js/chart.js"></script>
+<script src="~/js/map.js"></script>
+<script src="~/js/custom.js"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

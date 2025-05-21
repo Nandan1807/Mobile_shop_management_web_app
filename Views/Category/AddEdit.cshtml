@@ -1,0 +1,34 @@
+@model Mobile_shop_Frontend.Models.CategoryModel
+
+@{
+ViewBag.Title = "Category Form";
+}
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="card-body">
+        <form asp-controller="Category" asp-action="Save" method="post">
+            <!-- Hidden Field for CategoryId -->
+            <input type="hidden" id="categoryId" asp-for="CategoryId">
+
+            <div class="form-group">
+                <label for="categoryName">Category Name</label>
+                <input type="text" class="form-control rounded-0" id="categoryName" asp-for="CategoryName" placeholder="Enter Category Name">
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control rounded-0" id="description" asp-for="Description" placeholder="Enter Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+
+            </div>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary btn-pill">Submit</button>
+                <button asp-controller="Category" asp-action="GetCategories" class="btn btn-light btn-pill">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

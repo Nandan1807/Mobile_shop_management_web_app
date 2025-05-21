@@ -1,0 +1,57 @@
+@model IEnumerable<Mobile_shop_Frontend.Models.UserModel>;
+
+@{
+    ViewBag.Title = "Sellers Table";
+}
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+        <div class="dropdown">
+            <a asp-controller="User" asp-action="AddEdit" class="btn btn-primary btn-pill justify-content-end">Add Seller</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Seller Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                    <th>Modified Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var seller in Model)
+                {
+                    <tr>
+                        <td>@seller.UserName</td>
+                        <td>@seller.UserEmail</td>
+                        <td>@seller.Role</td>
+                        <td>@seller.Status</td>
+                        <td>@seller.CreatedDate.ToString("dd/MM/yyyy")</td>
+                        <td>@(seller.ModifiedDate?.ToString("dd/MM/yyyy") ?? "-")</td>
+                        <td>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" asp-controller="User" asp-action="AddEdit" asp-route-id="@seller.UserId">Edit</a>
+                                    <a class="dropdown-item" asp-controller="User" asp-action="Delete" asp-route-id="@seller.UserId">Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            </div>
+    </div>
+</div>
+
+

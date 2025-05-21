@@ -1,0 +1,102 @@
+@model Mobile_shop_Frontend.Models.UserModel
+
+@{
+ViewBag.Title = "Profile";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width: 500px; margin: auto;">
+        <div class="text-center">
+            <h3 class="fw-bold">@Model.UserName</h3>
+            <p class="text-muted">@Model.Role</p>
+        </div>
+        <hr>
+        <form asp-action="UpdateProfile" method="post">
+            <input type="hidden" asp-for="UserId">
+            <input type="hidden" asp-for="Role">
+            <div class="mb-3">
+                <label class="fw-bold">Email:</label>
+                <input type="text" class="form-control bg-light" asp-for="UserEmail" readonly>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Status:</label>
+                <input type="text" class="form-control bg-light" asp-for="Status" readonly>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Username:</label>
+                <input type="text" class="form-control" asp-for="UserName" id="username" disabled>
+                <span class="text-danger" asp-validation-for="UserName"></span>
+            </div>
+            @if (Model.Role != "Admin")
+            {
+            <div class="mb-3">
+                <label class="fw-bold">Password:</label>
+                <input type="text" class="form-control" asp-for="Password" id="password" disabled>
+                <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
+            }
+            else
+            {
+                <input type="hidden" asp-for="Password">
+            }
+            @if (Model.Role != "Admin")
+            {
+                <div class="text-center">
+                    <button type="button" id="editBtn" class="btn btn-primary btn-pill px-4" onclick="enableEdit()">Edit</button>
+                    <button type="submit" id="saveBtn" class="btn btn-success btn-pill px-4 d-none">Save</button>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background: #f8f9fa;
+    }
+    .card {
+        background: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-control {
+        border: none;
+        box-shadow: none;
+        background: #e9ecef;
+    }
+</style>
+
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function enableEdit() {
+        document.getElementById("username").disabled = false;
+        document.getElementById("password").disabled = false;
+        document.getElementById("editBtn").classList.add("d-none");
+        document.getElementById("saveBtn").classList.remove("d-none");
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Show error message if exists
+        var errorMessage = "@TempData["ErrorMessage"]";
+        if (errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: errorMessage,
+            });
+        }
+
+        // Show success message if exists
+        var successMessage = "@TempData["SuccessMessage"]";
+        if (successMessage) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: successMessage,
+            });
+        }
+    });
+</script>
+}

@@ -1,0 +1,89 @@
+@model Mobile_shop_Frontend.Models.ProductModel
+
+@{
+    ViewBag.Title = "Product Form";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="card-body">
+        <form asp-controller="Product" asp-action="Save" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="ProductId"/>
+            <input type="hidden" asp-for="ProductImage"/> <!-- Retain existing image URL -->
+
+            <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" class="form-control rounded-0" id="productName" asp-for="ProductName" placeholder="Enter Product Name">
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="ProductCategory">Category</label>
+                <select asp-for="CategoryId" class="form-control rounded-0" id="ProductCategory" asp-items="ViewBag.Categories" required>
+                    <option value="">Select Category</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="ProductBrand">Brand</label>
+                <select asp-for="ProductBrandId" class="form-control rounded-0" id="ProductBrand" asp-items="ViewBag.Brands" required>
+                    <option value="">Select Brand</option>
+                </select>
+                <span asp-validation-for="ProductBrandId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="productPrice">Product Price</label>
+                <input type="number" class="form-control rounded-0" id="productPrice" asp-for="ProductPrice" placeholder="Enter Price">
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" class="form-control rounded-0" id="stockQuantity" asp-for="StockQuantity" placeholder="Enter Stock Quantity">
+
+            <div class="form-group">
+                <label for="productDescription">Description</label>
+                <textarea class="form-control rounded-0" id="productDescription" asp-for="ProductDescription" placeholder="Enter Product Description"></textarea>
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageFile">Product Image</label>
+                @if (!string.IsNullOrEmpty(Model.ProductImage))
+                {
+                    <div>
+                        <img src="@Model.ProductImage" alt="Product Image" class="img-thumbnail" style="max-width: 200px;"/>
+                    </div>
+                }
+                <input type="file" asp-for="ImageFile" class="form-control"/>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <div>
+                    <div class="form-check mr-3 mb-3 d-inline-block">
+                        <input class="form-check-input" type="radio" asp-for="Status" id="statusAvailable" value="Available" checked>
+                        <label class="form-check-label" for="statusAvailable">Available</label>
+                    </div>
+                    <div class="form-check mr-3 mb-3 d-inline-block">
+                        <input class="form-check-input" type="radio" asp-for="Status" id="statusNotAvailable" value="Not Available">
+                        <label class="form-check-label" for="statusNotAvailable">Not Available</label>
+                    </div>
+                </div>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" id="categoryName" asp-for="CategoryName">
+            <input type="hidden" id="brandName" asp-for="BrandName">
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary btn-pill">Submit</button>
+                <button asp-controller="Product" asp-action="GetProducts" class="btn btn-light btn-pill">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

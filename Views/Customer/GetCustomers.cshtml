@@ -1,0 +1,102 @@
+@model IEnumerable<Mobile_shop_Frontend.Models.CustomerModel>
+@{
+    ViewBag.Title = "Customers Table";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+        <div class="dropdown">
+            <a asp-controller="Customer" asp-action="AddEdit" class="btn btn-primary btn-pill justify-content-end">Add Customer</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Created Date</th>
+                    <th>Modified Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var customer in Model)
+                {
+                <tr class="customer-row">
+                    <td hidden="hidden">@customer.CustomerId</td>
+                    <td>@customer.CustomerName</td>
+                    <td>@customer.CustomerEmail</td>
+                    <td>@customer.CustomerPhone</td>
+                    <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@customer.CustomerAddress</td>
+                    <td>@customer.CreatedDate.ToString("dd/MM/yyyy")</td>
+                    <td>@(customer.ModifiedDate?.ToString("dd/MM/yyyy") ?? "-")</td>
+                </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Customer Details Modal -->
+<div class="modal fade" id="customerDetailsModal" tabindex="-1" role="dialog" aria-labelledby="customerDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customerDetailsModalLabel">Customer Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Customer Name:</strong> <span id="customerName"></span></p>
+                        <p><strong>Email:</strong> <span id="customerEmail"></span></p>
+                        <p><strong>Phone:</strong> <span id="customerPhone"></span></p>
+                        <p><strong>Address:</strong> <span id="customerAddress"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="editCustomerBtn" class="btn btn-primary btn-pill">Edit</a>
+                <a id="deleteCustomerBtn" class="btn btn-secondary btn-pill">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+    $(document).ready(function () {
+        $(".customer-row").on("click", function () {
+            var customerId = $(this).find("td:eq(0)").text();
+            var customerName = $(this).find("td:eq(1)").text();
+            var customerEmail = $(this).find("td:eq(2)").text();
+            var customerPhone = $(this).find("td:eq(3)").text();
+            var customerAddress = $(this).find("td:eq(4)").text();
+
+            $("#customerName").text(customerName);
+            $("#customerEmail").text(customerEmail);
+            $("#customerPhone").text(customerPhone);
+            $("#customerAddress").text(customerAddress);
+
+            $("#editCustomerBtn").attr("href", `/Customer/AddEdit?id=${customerId}`);
+            $("#deleteCustomerBtn").attr("href", `/Customer/Delete?id=${customerId}`);
+
+            $("#customerDetailsModal").modal("show");
+        });
+
+        $(".close, .btn-secondary").on("click", function () {
+            $("#customerDetailsModal").modal("hide");
+        });
+    });
+    </script>
+}

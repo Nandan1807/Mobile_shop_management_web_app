@@ -1,0 +1,42 @@
+@model Mobile_shop_Frontend.Models.CustomerModel
+
+@{
+    ViewBag.Title = "Customers Form";
+}
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="card-body">
+        <form asp-controller="Customer" asp-action="Save" method="post">
+            <!-- Hidden Field for CustomerId -->
+            <input type="hidden" id="customerId" asp-for="CustomerId">
+
+            <div class="form-group">
+                <label for="customerName">Customer Name</label>
+                <input type="text" class="form-control rounded-0" id="customerName" asp-for="CustomerName" placeholder="Enter Name">
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="customerEmail">Email address</label>
+                <input type="email" class="form-control rounded-0" id="customerEmail" asp-for="CustomerEmail" placeholder="Enter Email">
+                <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="customerPhone">Phone Number</label>
+                <input type="text" class="form-control rounded-0" id="customerPhone" asp-for="CustomerPhone" placeholder="Enter Phone Number">
+                <span asp-validation-for="CustomerPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="customerAddress">Address</label>
+                <textarea class="form-control rounded-0" id="customerAddress" asp-for="CustomerAddress" placeholder="Enter Address"></textarea>
+                <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+            </div>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary btn-pill">Submit</button>
+                <button asp-controller="Customer" asp-action="GetCustomers" class="btn btn-light btn-pill">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

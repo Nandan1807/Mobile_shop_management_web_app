@@ -1,0 +1,12 @@
+﻿@using Newtonsoft.Json
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var userJson = HttpContextAccessor.HttpContext.Session.GetString("UserDetails");
+    var userDetails = userJson != null ? JsonConvert.DeserializeObject<Mobile_shop_Frontend.Models.UserModel>(userJson) : null;
+    ViewBag.UserDetails = userDetails;
+}
+
+@{
+    Layout = userDetails == null ? null : userDetails.Role == "Admin" ? "_AdminLayout" : "_SalesLayout";
+}

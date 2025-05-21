@@ -1,0 +1,161 @@
+@model IEnumerable<Mobile_shop_Frontend.Models.InvoiceModel>
+
+@{
+    ViewBag.Title = "Invoices Table";
+}
+
+
+<div class="card card-default mt-5">
+    <div class="card-header">
+        <h2>@ViewBag.Title</h2>
+        <div class="dropdown">
+            <a asp-controller="Invoice" asp-action="AddEdit" class="btn btn-primary btn-pill">Add Invoice</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="get" action="@Url.Action("GetInvoices", "Invoice")">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="customerDropdown">Customer</label>
+                    <select id="customerDropdown" name="customerId" asp-items="ViewBag.Customers" class="form-control">
+                        <option value="">All Customers</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="statusDropdown">Status</label>
+                    <select id="statusDropdown" name="status" asp-items="ViewBag.Statuses" class="form-control">
+                        <option value="">Status</option>
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end justify-content-end">
+                    <button type="submit" class="btn btn-primary btn-pill">Filter</button>
+                </div>
+            </div>
+        </form>
+        <div class="table-responsive">
+
+            <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Invoice ID</th>
+                    <th>Customer</th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Total Amount</th>
+                    <th>Payment Method</th>
+                    <th>Payment Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="productList">
+                @foreach (var invoice in Model)
+                {
+                    <tr class="invoice-row" style="cursor: pointer;">
+                        <td>@invoice.InvoiceId</td>
+                        <td>@invoice.CustomerName</td>
+                        <td>@invoice.UserName</td>
+                        <td>@invoice.Date.ToString("dd/MM/yyyy")</td>
+                        <td>@invoice.TotalAmount</td>
+                        <td>@invoice.PaymentMethod</td>
+                        <td>@invoice.PaymentStatus</td>
+                        <td>
+                            <div class="dropdown">
+                                <a onclick="redirectToInvoiceItems(@invoice.InvoiceId)" class="btn btn-sm">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            </div>
+    </div>
+</div>
+
+<div class="modal fade" id="invoiceDetailsModal" tabindex="-1" role="dialog" aria-labelledby="invoiceDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="invoiceDetailsModalLabel">Invoice Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <strong>Invoice ID:</strong> <span id="invoiceId"></span>
+                        </p>
+                        <p>
+                            <strong>Customer:</strong> <span id="customerName"></span>
+                        </p>
+                        <p>
+                            <strong>User:</strong> <span id="userName"></span>
+                        </p>
+                        <p>
+                            <strong>Date:</strong> <span id="invoiceDate"></span>
+                        </p>
+                        <p>
+                            <strong>Total Amount:</strong> <span id="totalAmount"></span>
+                        </p>
+                        <p>
+                            <strong>Payment Method:</strong> <span id="paymentMethod"></span>
+                        </p>
+                        <p>
+                            <strong>Payment Status:</strong> <span id="paymentStatus"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="editInvoiceBtn" class="btn btn-primary btn-pill">Edit</a>
+                <a id="deleteInvoiceBtn" class="btn btn-secondary btn-pill">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+
+    <script>
+    function redirectToInvoiceItems(invoiceId) {
+        window.location.href = `/InvoiceItem/GetInvoiceItems?invoiceId=${invoiceId}`;
+    }
+    </script>
+    <script>
+    $(document).ready(function () {
+        $(".invoice-row").on("click", function () {
+            var invoiceId = $(this).find("td:eq(0)").text();
+            var customerName = $(this).find("td:eq(1)").text();
+            var userName = $(this).find("td:eq(2)").text();
+            var invoiceDate = $(this).find("td:eq(3)").text();
+            var totalAmount = $(this).find("td:eq(4)").text();
+            var paymentMethod = $(this).find("td:eq(5)").text();
+            var paymentStatus = $(this).find("td:eq(6)").text();
+
+            $("#invoiceId").text(invoiceId);
+            $("#customerName").text(customerName);
+            $("#userName").text(userName);
+            $("#invoiceDate").text(invoiceDate);
+            $("#totalAmount").text(totalAmount);
+            $("#paymentMethod").text(paymentMethod);
+            $("#paymentStatus").text(paymentStatus);
+
+            $("#editInvoiceBtn").attr("href", `/Invoice/AddEdit?id=${invoiceId}`);
+            $("#deleteInvoiceBtn").attr("href", `/Invoice/Delete?id=${invoiceId}`);
+
+            $("#invoiceDetailsModal").modal("show");
+        });
+        
+        $('.close, .btn-secondary').on('click', function () {
+            $('#productDetailsModal').modal('hide');
+        });
+    });
+</script>
+
+
+}
