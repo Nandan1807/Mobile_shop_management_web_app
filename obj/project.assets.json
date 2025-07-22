@@ -383,11 +383,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/nandan/Desktop/Sem-6/Dotnet Advance/MobileShopProject/Mobile_shop_Frontend/Mobile_shop_Frontend.csproj",
+      "projectUniqueName": "/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Mobile_shop_Frontend.csproj",
       "projectName": "Mobile_shop_Frontend",
-      "projectPath": "/Users/nandan/Desktop/Sem-6/Dotnet Advance/MobileShopProject/Mobile_shop_Frontend/Mobile_shop_Frontend.csproj",
+      "projectPath": "/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Mobile_shop_Frontend.csproj",
       "packagesPath": "/Users/nandan/.nuget/packages/",
-      "outputPath": "/Users/nandan/Desktop/Sem-6/Dotnet Advance/MobileShopProject/Mobile_shop_Frontend/obj/",
+      "outputPath": "/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/nandan/.nuget/NuGet/NuGet.Config"

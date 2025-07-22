@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NhRtTnSIl0aqxgt8ZQFCns/qMzXB486wST9MG3o9uC3l0wIoTu8I97Xx3BYEopPng27Q5CLQVFpgY9NdST6Knw==",
+  "dgSpecHash": "JXOzfGS8AsmnIvDnIMsh9erVvjy/Ls2xqKWJ0+p/ylO2cxl0qJku1KbxC7j/qU+/JMW3RqTOharGTF8NJmj9/w==",
   "success": true,
-  "projectFilePath": "/Users/nandan/Desktop/Sem-6/Dotnet Advance/MobileShopProject/Mobile_shop_Frontend/Mobile_shop_Frontend.csproj",
+  "projectFilePath": "/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Mobile_shop_Frontend.csproj",
   "expectedPackageFiles": [
     "/Users/nandan/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
     "/Users/nandan/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
