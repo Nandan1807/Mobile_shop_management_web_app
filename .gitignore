@@ -12,7 +12,6 @@ obj/
 
 # Environment files (secrets)
 .env
-.env.*
 
 # Logs
 *.log
