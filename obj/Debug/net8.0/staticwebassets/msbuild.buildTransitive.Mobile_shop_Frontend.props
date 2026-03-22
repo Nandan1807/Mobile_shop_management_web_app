@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../buildMultiTargeting/Mobile_shop_Frontend.props" />
-</Project>
