@@ -1,5 +1,7 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
@@ -9,127 +11,129 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Mobile_shop_Frontend
 build_property.RootNamespace = Mobile_shop_Frontend
-build_property.ProjectDir = /Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/
+build_property.ProjectDir = /Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app
+build_property.MSBuildProjectDirectory = /Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/AdminDashboard/AdminDashboard.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/AdminDashboard/AdminDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5EYXNoYm9hcmQvQWRtaW5EYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Auth/SignIn.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Auth/SignIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9TaWduSW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Brand/AddEdit.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Brand/AddEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQnJhbmQvQWRkRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Brand/GetBrands.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Brand/GetBrands.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQnJhbmQvR2V0QnJhbmRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Cart/Cart.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Cart/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FydC9DYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Category/AddEdit.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Category/AddEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvQWRkRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Category/GetCategories.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Category/GetCategories.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvR2V0Q2F0ZWdvcmllcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Customer/AddEdit.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Customer/AddEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3VzdG9tZXIvQWRkRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Customer/GetCustomers.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Customer/GetCustomers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3VzdG9tZXIvR2V0Q3VzdG9tZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Error/Error404.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Error/Error404.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvRXJyb3I0MDQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Error/Unauthorized.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Error/Unauthorized.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvVW5hdXRob3JpemVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Invoice/AddEdit.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Invoice/AddEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSW52b2ljZS9BZGRFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Invoice/GetInvoices.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Invoice/GetInvoices.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSW52b2ljZS9HZXRJbnZvaWNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/InvoiceItem/AddEdit.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/InvoiceItem/AddEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSW52b2ljZUl0ZW0vQWRkRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/InvoiceItem/GetInvoiceItems.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/InvoiceItem/GetInvoiceItems.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSW52b2ljZUl0ZW0vR2V0SW52b2ljZUl0ZW1zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Product/AddEdit.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Product/AddEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9BZGRFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Product/GetProducts.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Product/GetProducts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9HZXRQcm9kdWN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Profile/ProfilePage.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Profile/ProfilePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9Qcm9maWxlUGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/SalesDashboard/SalesDashboard.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/SalesDashboard/SalesDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FsZXNEYXNoYm9hcmQvU2FsZXNEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/SalesProduct/GetSalesProducts.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/SalesProduct/GetSalesProducts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FsZXNQcm9kdWN0L0dldFNhbGVzUHJvZHVjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/StockTransaction/AddEdit.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/StockTransaction/AddEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3RvY2tUcmFuc2FjdGlvbi9BZGRFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/StockTransaction/GetStockTransactions.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/StockTransaction/GetStockTransactions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3RvY2tUcmFuc2FjdGlvbi9HZXRTdG9ja1RyYW5zYWN0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/User/AddEdit.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/User/AddEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9BZGRFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/User/GetSellers.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/User/GetSellers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9HZXRTZWxsZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/_ViewImports.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/_ViewStart.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Shared/_AdminLayout.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Shared/_AdminLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-4j78mp8wkt
 
-[/Users/nandan/Desktop/Project/backend/Mobile_shop_management_web_app/Views/Shared/_SalesLayout.cshtml]
+[/Users/nandanjoshi/Desktop/Dot-Net/Mobile_shop_management_web_app/Views/Shared/_SalesLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19TYWxlc0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-mgegj4ptaf

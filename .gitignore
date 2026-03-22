@@ -1,0 +1,25 @@
+# Build folders
+bin/
+obj/
+
+# IDE
+.idea/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Environment files (secrets)
+.env
+.env.*
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Rider / VS cache
+*.cache
