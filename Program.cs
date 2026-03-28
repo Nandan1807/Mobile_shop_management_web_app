@@ -1,6 +1,8 @@
 using System.Reflection;
+using dotenv.net;
 using FluentValidation.AspNetCore;
 
+DotEnv.Load();
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSession(options =>
 {

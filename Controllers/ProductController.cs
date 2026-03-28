@@ -151,7 +151,7 @@ public class ProductController : Controller
         form.Add(new StringContent(product.CategoryId.ToString()), "CategoryId");
         form.Add(new StringContent(product.ProductBrandId.ToString()), "ProductBrandId");
         form.Add(new StringContent(product.ProductName), "ProductName");
-        form.Add(new StringContent(product.ProductPrice.ToString()), "ProductPrice");
+        form.Add(new StringContent(product.ProductPrice.ToString(System.Globalization.CultureInfo.InvariantCulture)), "ProductPrice");
         form.Add(new StringContent(product.StockQuantity.ToString()), "StockQuantity");
         form.Add(new StringContent(product.Status), "Status");
         form.Add(new StringContent(product.ProductDescription ?? ""), "ProductDescription");
