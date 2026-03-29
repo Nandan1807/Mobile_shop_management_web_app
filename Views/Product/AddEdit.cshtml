@@ -39,7 +39,9 @@
 
             <div class="form-group">
                 <label for="productPrice">Product Price</label>
-                <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control rounded-0" id="productPrice" asp-for="ProductPrice" placeholder="Enter Price">
+                <input type="text" 
+                       inputmode="decimal" 
+                       pattern="^\d+(\.\d{1,2})?$"  class="form-control rounded-0" id="productPrice" asp-for="ProductPrice" placeholder="Enter Price">
                 <span asp-validation-for="ProductPrice" class="text-danger"></span>
             </div>
 
